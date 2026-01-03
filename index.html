@@ -3,24 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Check Valid Card Number</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Card Validator | Secure Check</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💳</text></svg>">
 </head>
 <body>
   <div class="container">
-    <h1>Check Valid Card Number</h1>
+    <div class="header">
+      <i class="fas fa-credit-card logo"></i>
+      <h1>Card Validator</h1>
+      <p class="subtitle">Check the validity of your payment card using Luhn algorithm</p>
+    </div>
 
-    <input type="text" id="name" placeholder="Cardholder Name" />
-    <br>
-    <br>
-    <input type="text" id="cardNumber" placeholder="Enter card number" />
+    <div class="card-preview">
+      <div class="card">
+        <div class="card-header">
+          <div class="chip"></div>
+          <div class="card-type">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-amex"></i>
+          </div>
+        </div>
+        <div class="card-number-preview" id="cardNumberPreview">#### #### #### ####</div>
+        <div class="card-footer">
+          <div class="cardholder-preview" id="namePreview">CARDHOLDER NAME</div>
+          <div class="valid-preview">VALID</div>
+        </div>
+      </div>
+    </div>
 
-    <br>
-    <br>
+    <div class="form-container">
+      <div class="input-group">
+        <label for="name"><i class="fas fa-user"></i> Cardholder Name</label>
+        <input type="text" id="name" placeholder="enter name" />
+        <div class="input-hint">Enter the name as it appears on your card</div>
+      </div>
 
-    <button onclick="validateCard()">Validate</button>
+      <div class="input-group">
+        <label for="cardNumber"><i class="fas fa-hashtag"></i> Card Number</label>
+        <input type="text" id="cardNumber" placeholder="enter card number" maxlength="19" />
+        <div class="input-hint">Enter 13-19 digits (spaces will be auto-added)</div>
+      </div>
 
-    <p id="result"></p>
+      <button id="validateBtn" onclick="validateCard()">
+        <i class="fas fa-shield-check"></i> Validate Card
+      </button>
+
+      <div class="result-container" id="resultContainer">
+        <div class="result-icon" id="resultIcon">
+          <i class="fas fa-question-circle"></i>
+        </div>
+        <div class="result-text">
+          <h3 id="resultTitle">Ready to validate</h3>
+          <p id="result">Enter your card details and click "Validate Card"</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="info-box">
+        <i class="fas fa-info-circle"></i>
+        <p>This tool uses the <strong>Luhn algorithm</strong> to check card number validity. No data is stored or transmitted.</p>
+      </div>
+      <p>For demonstration purposes only. Not a real payment processor.</p>
+    </div>
   </div>
 
   <script src="script.js"></script>
